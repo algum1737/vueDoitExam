@@ -3,7 +3,6 @@
       <span class="clearAllBtn" v-on:click="clearTodo">
           Clear All
       </span>
-      <button>test</button>
   </div>
 </template>
 
