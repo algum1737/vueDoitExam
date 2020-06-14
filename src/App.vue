@@ -16,22 +16,22 @@ import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
 
 export default {
-  data: function(){
+  data(){
     return{
       todoItems:[]
     }
   },
   methods: {
-    addOneItem:function(todoItem){
+    addOneItem(todoItem){
                 let obj = {completed: false, item: todoItem};
                 localStorage.setItem(todoItem, JSON.stringify(obj));
                 this.todoItems.push(obj);
     },
-    removeOneItem:function(todoItem,index){
+    removeOneItem(todoItem,index){
       localStorage.removeItem(todoItem.item);
             this.todoItems.splice(index,1);
     },
-    toggleOneItem:function(todoItem, index){
+    toggleOneItem(todoItem, index){
             //todoItem.completed = !todoItem.completed; 아래 코드랑 동일함 바꾼 이유는 이벤트 버스를 이용해서 받은 정보를 굳이 간접적으로 바꿀 필요없이 직접적으로 바꿔야 구성에 좋다
             this.todoItems[index].completed = !this.todoItems[index].completed
             // 로컬 스토리지에 재 저장
@@ -39,13 +39,13 @@ export default {
             localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
             console.log(todoItem, index);
     },
-    removeAllItem:function(){
+    removeAllItem(){
            localStorage.clear();
            this.todoItems=[];
 
     }
   },
-    created:function() {
+    created() {
       if(localStorage.length > 0){
           for(let i = 0; i < localStorage.length; i++){
              if(localStorage.key(i)!=='loglevel:webpack-dev-server'){
@@ -57,10 +57,10 @@ export default {
     },
   components:{
     //컴포넌트 태그명 : 컴포넌트 내용
-    'TodoHeader' : TodoHeader,
-    'TodoInput' : TodoInput,
-    'TodoFooter' : TodoFooter,
-    'TodoList' : TodoList,
+    TodoHeader,
+    TodoInput,
+    TodoFooter,
+    TodoList,
 
   }
 }
